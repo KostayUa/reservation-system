@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-spring-boot-reservations
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_reservations_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-spring-boot-reservations
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: abc@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin_reservations_data:/var/lib/pgadmin
+
+volumes:
+  postgres_reservations_data:
+  pgadmin_reservations_data:
