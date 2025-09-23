@@ -1,5 +1,6 @@
 package com.kostay.reservation_system;
 
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservationToCreate) {
+    public ResponseEntity<Reservation> createReservation(@RequestBody @Valid Reservation reservationToCreate) {
         logger.info("Called method createReservation");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .header("test-header", "test-header-value")
@@ -41,7 +42,7 @@ public class ReservationController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Reservation> updateReservation(@PathVariable("id") Long id,
-            @RequestBody Reservation reservationToUpdate) {
+            @RequestBody @Valid Reservation reservationToUpdate) {
         logger.info("Called method updateReservation: id={}, reservationToUpdate={}", id, reservationToUpdate);
         var updated = reservationService.updateReservation(id, reservationToUpdate);
         return ResponseEntity.ok(updated);
