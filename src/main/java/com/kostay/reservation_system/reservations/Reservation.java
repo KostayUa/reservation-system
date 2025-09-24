@@ -1,4 +1,4 @@
-package com.kostay.reservation_system;
+package com.kostay.reservation_system.reservations;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
